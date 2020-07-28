@@ -34,19 +34,20 @@ You can also adjust the size of your graph.
 
 We can add some context to this graph for our teammates, or even add code snippets for applying a fix. Paste the below into your runbook, or add your own context.
 
+<pre>
+Typical behavior is to have most errors from `error.origin:network`- if other categories are spiking, should be investigated.  
 
-> Typical behavior is to have most errors from `error.origin:network`- if other categories are spiking, should be investigated.  
->
-> ## Solving Bottlenecks
-> By changing the line:
-> ```
-> discounts = Discount.query.all()
-> ```
-> To the following:
-> ```
-> discounts = Discount.query.options(joinedload('*')).all()
-> ```
-> We eager load the `discount_type` relation on the `discount`, and can grab all information without multiple trips to the database:
+## Solving Bottlenecks
+By changing the line:
+```
+discounts = Discount.query.all()
+```
+To the following:
+```
+discounts = Discount.query.options(joinedload('*')).all()
+```
+We eager load the `discount_type` relation on the `discount`, and can grab all information without multiple trips to the database.
+</pre>
 
 ## Custom Links
 Going back to our cloned performance overview dashboard, we can link to our runbook directly from the `Frontend Errors` graph.  
