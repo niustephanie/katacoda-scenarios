@@ -13,9 +13,9 @@ Let’s start by adding an overview of your services. You can paste this overvie
 ```
 
 ## Custom Troubleshooting
-Next, let's add links to some of the graphs you used to debug your service. Since we worked on `store-frontend`, we can create a custom link to the graph of `store-frontend` performance. Go to the dashboard of your [RUM Performance Overview(https://app.datadoghq.com/screen/integration/30292/rum---performance-overview?from_ts=1595949761945&to_ts=1595953361945&live=true).  
+Next, let's add links to some of the graphs you used to debug your service. Since we worked on `store-frontend`, we can create a custom link to the graph of `store-frontend` performance. Go to the dashboard of your [RUM Performance Overview](https://app.datadoghq.com/screen/integration/30292/rum---performance-overview?from_ts=1595949761945&to_ts=1595953361945&live=true).  
 
-This is an out-of-the-box dashboard for real-user-monitoring (RUM) that monitors metrics like page views and frontend errors. We can clone it to make changes.  
+This is an out-of-the-box dashboard for real-user-monitoring for metrics like page views and frontend errors. We can clone it to make changes.  
 
 For our spree services, we know that problems often happen in the production environment with frontend errors. Let’s set our template variable `env` to `prod`. This updates our dashboard URL.  
 
@@ -32,22 +32,21 @@ Each graph can easily be unlinked from global time and set to a new time, manual
 
 You can also adjust the size of your graph.  
 
-We can add some context to this graph for our teammates or even add code snippets for applying a fix.  
+We can add some context to this graph for our teammates, or even add code snippets for applying a fix. Paste the below into your runbook, or add your own context.
 
-```
-Typical behavior is to have most errors from `error.origin:network`- if other categories are spiking, should be investigated.  
 
-## Solving Bottlenecks
-By changing the line:
-```
-discounts = Discount.query.all()
-```
-To the following:
-```
-discounts = Discount.query.options(joinedload('*')).all()
-```
-We eager load the `discount_type` relation on the `discount`, and can grab all information without multiple trips to the database:
-```
+> Typical behavior is to have most errors from `error.origin:network`- if other categories are spiking, should be investigated.  
+>
+> ## Solving Bottlenecks
+> By changing the line:
+> ```
+> discounts = Discount.query.all()
+> ```
+> To the following:
+> ```
+> discounts = Discount.query.options(joinedload('*')).all()
+> ```
+> We eager load the `discount_type` relation on the `discount`, and can grab all information without multiple trips to the database:
 
 ## Custom Links
 Going back to our cloned performance overview dashboard, we can link to our runbook directly from the `Frontend Errors` graph.  
@@ -60,5 +59,3 @@ Now, when we set `env` to `prod`, we can click on the `Frontend Errors` graph an
 
 ## Shared Context
 Now your dashboard and runbook link to each other. You can easily link to a runbook from a Monitor, a graph, or even an external team wiki. You can see notebooks you and teammates have created in the Notebooks list page.
-
-```
