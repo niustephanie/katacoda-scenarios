@@ -1,0 +1,43 @@
+{
+    "time": "X minutes",
+    "title": "Datadog 201 Workshop",
+    "details": {
+      "intro": {
+        "courseData": "background.sh",
+        "text": "intro.md"
+      },
+      "steps": [
+        {
+          "text": "step1.md",
+          "title": "Step 1"
+        },
+        {
+          "text": "step2.md",
+          "title": "Step 2"
+        },
+        {
+          "text": "step3.md",
+          "title": "Creating a Runbook"
+        }
+      ]
+    },
+    "environment": {
+      "uilayout": "editor-terminal",
+      "uieditorpath": "/root/lab/",
+      "terminals": [
+        {
+          "name": "Terminal 2"
+        }
+      ],
+      "showdashboard": true,
+      "dashboards": [
+        {
+          "name": "Storedog",
+          "port": 3000
+        }
+      ]
+    },
+    "backend": {
+      "imageid": "datadog-base-v1"
+    }
+  }
