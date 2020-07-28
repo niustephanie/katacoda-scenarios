@@ -5,12 +5,12 @@ In your navigation bar, find the Notebook icon and click “New Notebook”, or 
 
 Let’s start by adding an overview of your services. You can paste this overview that a teammate has already written.
 
-```
+<pre>
 ## Service Overview
 `ads-service`: Service to manage advertisement scheduling and displays  
 `discounts-service`: Service to manage discount codes and validation  
 `store-frontend`: Service for the store’s web frontend  
-```
+</pre>
 
 ## Custom Troubleshooting
 Next, let's add links to some of the graphs you used to debug your service. Since we worked on `store-frontend`, we can create a custom link to the graph of `store-frontend` performance. Go to the dashboard of your [RUM Performance Overview](https://app.datadoghq.com/screen/integration/30292/rum---performance-overview?from_ts=1595949761945&to_ts=1595953361945&live=true).  
@@ -21,9 +21,9 @@ For our spree services, we know that problems often happen in the production env
 
 We can link to this dashboard in our runbook and add some context around it.. Paste this into your runbook or add your own context:  
 
-```
+<pre>
 [RUM Performance Overview for Prod](https://app.datadoghq.com/screen/integration/30292/rum---performance-overview?from_ts=1595968236673&live=true&to_ts=1595971836673&tpl_var_env=prod)
-```
+</pre>
 
 ## Exporting Graphs
 We can also export individual graphs to this notebook. Go to the `Frontend Errors` graph and export it to the notebook we’ve created.  
@@ -34,19 +34,20 @@ You can also adjust the size of your graph.
 
 We can add some context to this graph for our teammates, or even add code snippets for applying a fix. Paste the below into your runbook, or add your own context.
 
+<pre>
+Typical behavior is to have most errors from `error.origin:network`- if other categories are spiking, should be investigated.  
 
-> Typical behavior is to have most errors from `error.origin:network`- if other categories are spiking, should be investigated.  
->
-> ## Solving Bottlenecks
-> By changing the line:
-> ```
-> discounts = Discount.query.all()
-> ```
-> To the following:
-> ```
-> discounts = Discount.query.options(joinedload('*')).all()
-> ```
-> We eager load the `discount_type` relation on the `discount`, and can grab all information without multiple trips to the database:
+## Solving Bottlenecks
+By changing the line:
+```
+discounts = Discount.query.all()
+```
+To the following:
+```
+discounts = Discount.query.options(joinedload('*')).all()
+```
+We eager load the `discount_type` relation on the `discount`, and can grab all information without multiple trips to the database.
+</pre>
 
 ## Custom Links
 Going back to our cloned performance overview dashboard, we can link to our runbook directly from the `Frontend Errors` graph.  
